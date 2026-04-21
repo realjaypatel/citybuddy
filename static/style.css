@@ -1,0 +1,118 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    background: #f8f8f8;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 20px;
+    background: white;
+    border-bottom: 1px solid #eee;
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 20px;
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    gap: 8px;
+}
+
+.filters input,
+.filters select {
+    padding: 7px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.filters button {
+    padding: 7px 10px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 6px;
+}
+
+/* CTA */
+.cta {
+    margin-left: auto;
+    background: #16a34a;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+/* Container */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 10px;
+}
+
+/* Card */
+.card {
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.price {
+    font-weight: bold;
+    color: #16a34a;
+}
+
+.city {
+    color: #777;
+    margin: 2px 0;
+}
+
+/* Tag */
+.tag {
+    display: inline-block;
+    margin-top: 8px;
+    background: #eee;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* Description */
+.desc {
+    margin-top: 10px;
+    line-height: 1.4;
+}
+
+/* Actions */
+.actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+}
+
+.actions a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #2563eb;
+}
+
+/* Empty */
+.empty {
+    text-align: center;
+    color: #888;
+    margin-top: 40px;
+}

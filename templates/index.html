@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CityBuddy</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h1>CityBuddy</h1>
+
+    <form method="get" class="filters">
+        <input 
+            type="text" 
+            name="city" 
+            placeholder="Search city..." 
+            value="{{ city }}"
+        >
+
+        <select name="role">
+            <option value="">All</option>
+            <option value="Local Guide" {% if role=='Local Guide' %}selected{% endif %}>Guide</option>
+            <option value="Friend" {% if role=='Friend' %}selected{% endif %}>Friend</option>
+            <option value="Listener" {% if role=='Listener' %}selected{% endif %}>Listener</option>
+        </select>
+
+        <button type="submit">Search</button>
+    </form>
+
+    <a href="YOUR_GOOGLE_FORM_LINK" target="_blank" class="cta">
+        + Post
+    </a>
+</div>
+
+
+<div class="container">
+
+    {% if posts|length == 0 %}
+        <p class="empty">No listings found</p>
+    {% endif %}
+
+    {% for post in posts %}
+    <div class="card">
+
+        <div class="top">
+            <div>
+                <h2>{{ post['Name'] }}</h2>
+                <p class="city">📍 {{ post['City'].title() }}</p>
+            </div>
+
+            <div class="price">₹{{ post['Price'] }}</div>
+        </div>
+
+        <span class="tag">{{ post['Role'] }}</span>
+
+        <p class="desc">{{ post['Description'] }}</p>
+
+        <div class="actions">
+            <a href="tel:{{ post['Contact'] }}">Call</a>
+            <a href="https://wa.me/{{ post['Contact'] }}" target="_blank">WhatsApp</a>
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
