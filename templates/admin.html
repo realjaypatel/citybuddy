@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h1>Admin Panel</h1>
+    <a href="/create" class="cta">+ Create</a>
+    <a href="/logout">Logout</a>
+</div>
+
+<div class="container">
+
+{% for p in posts %}
+    <div class="card">
+        <b>{{ p.name }}</b> - {{ p.city }} - ₹{{ p.price }}
+
+        <div class="actions">
+            <a href="/delete/{{ p._id }}">❌ Delete</a>
+        </div>
+    </div>
+{% endfor %}
+
+</div>
+
+</body>
+</html>

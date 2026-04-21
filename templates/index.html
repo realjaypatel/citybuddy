@@ -10,56 +10,42 @@
     <h1>CityBuddy</h1>
 
     <form method="get" class="filters">
-        <input 
-            type="text" 
-            name="city" 
-            placeholder="Search city..." 
-            value="{{ city }}"
-        >
-
+        <input name="city" placeholder="City">
+        
         <select name="role">
             <option value="">All</option>
-            <option value="Local Guide" {% if role=='Local Guide' %}selected{% endif %}>Guide</option>
-            <option value="Friend" {% if role=='Friend' %}selected{% endif %}>Friend</option>
-            <option value="Listener" {% if role=='Listener' %}selected{% endif %}>Listener</option>
+            <option>Local Guide</option>
+            <option>Friend</option>
+            <option>Listener</option>
         </select>
 
-        <button type="submit">Search</button>
+        <button>Search</button>
     </form>
 
-    <a href="YOUR_GOOGLE_FORM_LINK" target="_blank" class="cta">
-        + Post
-    </a>
+    <a href="/login" class="cta">Admin</a>
 </div>
-
 
 <div class="container">
 
-    {% if posts|length == 0 %}
-        <p class="empty">No listings found</p>
-    {% endif %}
-
-    {% for post in posts %}
+    {% for p in posts %}
     <div class="card">
-
         <div class="top">
             <div>
-                <h2>{{ post['Name'] }}</h2>
-                <p class="city">📍 {{ post['City'].title() }}</p>
+                <h2>{{ p.name }}</h2>
+                <p class="city">📍 {{ p.city }}</p>
             </div>
 
-            <div class="price">₹{{ post['Price'] }}</div>
+            <div class="price">₹{{ p.price }}</div>
         </div>
 
-        <span class="tag">{{ post['Role'] }}</span>
+        <span class="tag">{{ p.role }}</span>
 
-        <p class="desc">{{ post['Description'] }}</p>
+        <p class="desc">{{ p.description }}</p>
 
         <div class="actions">
-            <a href="tel:{{ post['Contact'] }}">Call</a>
-            <a href="https://wa.me/{{ post['Contact'] }}" target="_blank">WhatsApp</a>
+            <a href="tel:{{ p.contact }}">Call</a>
+            <a href="https://wa.me/{{ p.contact }}" target="_blank">WhatsApp</a>
         </div>
-
     </div>
     {% endfor %}
 
