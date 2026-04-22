@@ -1,5 +1,12 @@
-<link rel="stylesheet" href="/static/style.css">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CityBuddy</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
 
+<!-- NAVBAR -->
 <div class="nav">
     <strong>CITYBUDDY</strong>
     <a href="/login">Login</a>
@@ -7,34 +14,75 @@
 
 <div class="container">
 
+    <h2>Explore</h2>
+
+    <!-- FILTERS -->
     <form class="filters" method="GET">
-        <input name="city" placeholder="City">
+        <input 
+            name="city" 
+            placeholder="City"
+            value="{{ request.args.get('city','') }}"
+        >
+
         <select name="role">
-            <option value="">All</option>
-            <option>Developer</option>
-            <option>Designer</option>
-            <option>Founder</option>
+            <option value="">All Roles</option>
+            <option value="Friend" {% if request.args.get('role') == "Friend" %}selected{% endif %}>Friend</option>
+            <option value="Local Guide Friend" {% if request.args.get('role') == "Local Guide Friend" %}selected{% endif %}>Local Guide Friend</option>
+            <option value="Listener" {% if request.args.get('role') == "Listener" %}selected{% endif %}>Listener</option>
+            <option value="Internet Friend" {% if request.args.get('role') == "Internet Friend" %}selected{% endif %}>Internet Friend</option>
         </select>
+
         <button class="btn">Search</button>
     </form>
 
+    <!-- EMPTY STATE -->
+    {% if posts|length == 0 %}
+        <p class="small">No profiles found.</p>
+    {% endif %}
+
+    <!-- GRID -->
     <div class="grid">
+
         {% for p in posts %}
-        <div class="card">
+        <a href="/post/{{ p._id }}" style="text-decoration:none; color:inherit;">
 
-            {% if p.image %}
-            <img src="data:image/jpeg;base64,{{ p.image }}">
-            {% endif %}
+            <div class="card">
 
-            <div class="card-content">
-                <h3>{{ p.name }}</h3>
-                <p>{{ p.city }} · {{ p.role }}</p>
-                <b>₹{{ p.price }}</b>
-                <p>{{ p.description }}</p>
+                <!-- IMAGE -->
+                {% if p.image %}
+                <img src="data:image/jpeg;base64,{{ p.image }}">
+                {% endif %}
+
+                <!-- CONTENT -->
+                <div class="card-content">
+
+                    <h3>{{ p.name }}</h3>
+
+                    <div class="small">
+                        {{ p.city }} · {{ p.role }}
+                    </div>
+
+                    <br>
+
+                    <strong>₹{{ p.price }}</strong>
+
+                    {% if p.description %}
+                    <p class="small">
+                        {{ p.description[:80] }}
+                        {% if p.description|length > 80 %}...{% endif %}
+                    </p>
+                    {% endif %}
+
+                </div>
+
             </div>
 
-        </div>
+        </a>
         {% endfor %}
+
     </div>
 
 </div>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ post.name }} - CityBuddy</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav">
+    <a href="/">← Back</a>
+    <strong>CITYBUDDY</strong>
+    <div></div>
+</div>
+
+<div class="container">
+
+    <div class="card" style="max-width:600px; margin:auto;">
+
+        <!-- IMAGE -->
+        {% if post.image %}
+        <img src="data:image/jpeg;base64,{{ post.image }}" 
+             style="width:100%; height:260px; object-fit:cover;">
+        {% endif %}
+
+        <div class="card-content">
+
+            <!-- NAME -->
+            <h2>{{ post.name }}</h2>
+
+            <!-- META -->
+            <div class="small">
+                {{ post.city }} · {{ post.role }}
+            </div>
+
+            <br>
+
+            <!-- PRICE -->
+            <h3>₹{{ post.price }}</h3>
+
+            <!-- DESCRIPTION -->
+            {% if post.description %}
+            <p>{{ post.description }}</p>
+            {% endif %}
+
+            <hr>
+
+            <!-- CONNECT SECTION -->
+            <div style="text-align:center; margin-top:20px;">
+
+                <!-- hidden contact -->
+                <div id="contactBox" style="display:none;">
+                    <p class="small">Contact</p>
+                    <p><strong>{{ post.contact }}</strong></p>
+                </div>
+
+                <!-- button -->
+                <button class="btn" onclick="showContact()">
+                    Connect
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- JS -->
+<script>
+function showContact() {
+    document.getElementById("contactBox").style.display = "block";
+}
+</script>
+
+</body>
+</html>

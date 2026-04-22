@@ -190,6 +190,15 @@ def logout():
     session.clear()
     return redirect("/")
 
+@app.route("/post/<id>")
+def post_detail(id):
+    post = posts_col.find_one({"_id": ObjectId(id)})
+
+    if not post:
+        return "Post not found"
+
+    return render_template("post.html", post=post)
+    
 # -------------------------
 # RUN
 # -------------------------
