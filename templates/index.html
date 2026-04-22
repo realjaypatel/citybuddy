@@ -1,55 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>CityBuddy</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
+<link rel="stylesheet" href="/static/style.css">
 
-<div class="navbar">
-    <h1>CityBuddy</h1>
-
-    <form method="get" class="filters">
-        <input name="city" placeholder="City">
-        
-        <select name="role">
-            <option value="">All</option>
-            <option>Local Guide</option>
-            <option>Friend</option>
-            <option>Listener</option>
-        </select>
-
-        <button>Search</button>
-    </form>
-
-    <a href="/login" class="cta">Admin</a>
+<div class="nav">
+    <strong>CITYBUDDY</strong>
+    <a href="/login">Login</a>
 </div>
 
 <div class="container">
 
-    {% for p in posts %}
-    <div class="card">
-        <div class="top">
-            <div>
-                <h2>{{ p.name }}</h2>
-                <p class="city">📍 {{ p.city }}</p>
+    <form class="filters" method="GET">
+        <input name="city" placeholder="City">
+        <select name="role">
+            <option value="">All</option>
+            <option>Developer</option>
+            <option>Designer</option>
+            <option>Founder</option>
+        </select>
+        <button class="btn">Search</button>
+    </form>
+
+    <div class="grid">
+        {% for p in posts %}
+        <div class="card">
+
+            {% if p.image %}
+            <img src="data:image/jpeg;base64,{{ p.image }}">
+            {% endif %}
+
+            <div class="card-content">
+                <h3>{{ p.name }}</h3>
+                <p>{{ p.city }} · {{ p.role }}</p>
+                <b>₹{{ p.price }}</b>
+                <p>{{ p.description }}</p>
             </div>
 
-            <div class="price">₹{{ p.price }}</div>
         </div>
-
-        <span class="tag">{{ p.role }}</span>
-
-        <p class="desc">{{ p.description }}</p>
-
-        <div class="actions">
-            <a href="tel:{{ p.contact }}">Call</a>
-            <a href="https://wa.me/{{ p.contact }}" target="_blank">WhatsApp</a>
-        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 
 </div>
-
-</body>
-</html>

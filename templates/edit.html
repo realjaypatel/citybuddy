@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="form-box">
+    <h2>Edit Profile</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <label>Name</label>
+        <input name="name" value="{{ post.name }}" required>
+
+        <label>City</label>
+        <input name="city" value="{{ post.city }}" required>
+
+        <label>Role</label>
+        <select name="role" required>
+            <option value="Friend" {% if post.role == "Friend" %}selected{% endif %}>Friend</option>
+            <option value="Local Guide Friend" {% if post.role == "Local Guide Friend" %}selected{% endif %}>Local Guide Friend</option>
+            <option value="Listener" {% if post.role == "Listener" %}selected{% endif %}>Listener</option>
+            <option value="Internet Friend" {% if post.role == "Internet Friend" %}selected{% endif %}>Internet Friend</option>
+        </select>
+
+        <label>Price</label>
+        <input type="number" name="price" value="{{ post.price }}" required>
+
+        <label>Description</label>
+        <textarea name="description">{{ post.description }}</textarea>
+
+        <label>Contact</label>
+        <input name="contact" value="{{ post.contact }}">
+
+        <!-- EXISTING IMAGE -->
+        {% if post.image %}
+        <label>Current Photo</label>
+        <img src="data:image/jpeg;base64,{{ post.image }}" 
+             style="width:100%; border-radius:10px; margin-bottom:10px;">
+        {% endif %}
+
+        <!-- NEW IMAGE -->
+        <label>Update Photo</label>
+        <input type="file" name="image">
+
+        <br><br>
+        <button class="btn">Update</button>
+    </form>
+
+</div>
+
+</body>
+</html>

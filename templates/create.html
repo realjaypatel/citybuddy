@@ -1,29 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Create Profile</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
-<div class="container">
-<h2>Create Post</h2>
+<div class="form-box">
+    <h2>Create Profile</h2>
 
-<form method="post">
-    <input name="name" placeholder="Name"><br><br>
-    <input name="city" placeholder="City"><br><br>
+    <form method="POST">
 
-    <select name="role">
-        <option>Local Guide</option>
-        <option>Friend</option>
-        <option>Listener</option>
-    </select><br><br>
+        <label>Name</label>
+        <input name="name" required>
 
-    <input name="price" placeholder="Price"><br><br>
-    <textarea name="description" placeholder="Description"></textarea><br><br>
-    <input name="contact" placeholder="Contact"><br><br>
+        <label>City</label>
+        <input name="city" required>
 
-    <button>Save</button>
-</form>
+        <label>Role</label>
+        <select name="role" required>
+            <option value="Friend">Friend</option>
+            <option value="Local Guide Friend">Local Guide Friend</option>
+            <option value="Listener">Listener</option>
+            <option value="Internet Friend">Internet Friend</option>
+        </select>
+
+        <label>Price</label>
+        <input type="number" name="price" required>
+
+        <label>Description</label>
+        <textarea name="description"></textarea>
+
+        <label>Contact</label>
+        <input name="contact">
+
+        <br><br>
+        <button class="btn">Submit</button>
+    </form>
+
 </div>
 
 </body>

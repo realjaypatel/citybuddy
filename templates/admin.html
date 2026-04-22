@@ -1,27 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Admin - CityBuddy</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
-<div class="navbar">
-    <h1>Admin Panel</h1>
-    <a href="/create" class="cta">+ Create</a>
-    <a href="/logout">Logout</a>
+<div class="nav">
+    <strong>CITYBUDDY</strong>
+
+    <div>
+        <a href="/create">Create</a>
+        <a href="/logout">Logout</a>
+    </div>
 </div>
 
 <div class="container">
 
-{% for p in posts %}
-    <div class="card">
-        <b>{{ p.name }}</b> - {{ p.city }} - ₹{{ p.price }}
+    <h2>Your Profiles</h2>
 
-        <div class="actions">
-            <a href="/delete/{{ p._id }}">❌ Delete</a>
+    {% if posts|length == 0 %}
+        <p class="small">No profiles yet. Create one.</p>
+    {% endif %}
+
+    <div class="grid">
+
+        {% for p in posts %}
+        <div class="card">
+
+            {% if p.image %}
+            <img src="data:image/jpeg;base64,{{ p.image }}">
+            {% endif %}
+
+            <div class="card-content">
+
+                <h3>{{ p.name }}</h3>
+
+                <div class="small">
+                    {{ p.city }} · {{ p.role }}
+                </div>
+
+                <br>
+
+                <strong>₹{{ p.price }}</strong>
+
+                <p class="small">{{ p.description }}</p>
+
+                <div style="margin-top:10px; display:flex; gap:10px;">
+                    <a class="btn" href="/edit/{{ p._id }}">Edit</a>
+                    <a class="btn" href="/delete/{{ p._id }}">Delete</a>
+                </div>
+
+            </div>
+
         </div>
+        {% endfor %}
+
     </div>
-{% endfor %}
 
 </div>
 
