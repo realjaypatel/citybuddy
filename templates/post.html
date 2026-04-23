@@ -41,7 +41,7 @@
 
             <!-- DESCRIPTION -->
             {% if post.description %}
-            <p>{{ post.description }}</p>
+            <p class="desc-full">{{ post.description }}</p>
             {% endif %}
 
             <hr>
@@ -53,6 +53,17 @@
                 <div id="contactBox" style="display:none;">
                     <p class="small">Contact</p>
                     <p><strong>{{ post.contact }}</strong></p>
+
+
+<a 
+  href="https://wa.me/{{ post.contact.replace(' ', '').replace('+', '') }}?text=Hi%20{{ post.name }}%2C%20I%20found%20you%20on%20CityBuddy"
+  target="_blank"
+  class="btn"
+>
+  Chat on WhatsApp
+</a>
+
+
                 </div>
 
                 <!-- button -->

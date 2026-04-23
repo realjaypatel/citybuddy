@@ -122,3 +122,9 @@ hr {
     display: flex;
     gap: 15px;
 }
+
+.desc-full {
+    white-space: pre-line;   /* keeps line breaks */
+    line-height: 1.6;        /* better readability */
+    margin-top: 10px;
+}
