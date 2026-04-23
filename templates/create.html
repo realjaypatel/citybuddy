@@ -9,7 +9,7 @@
 <div class="form-box">
     <h2>Create Profile</h2>
 
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
 
         <label>Name</label>
         <input name="name" required>
@@ -25,7 +25,7 @@
             <option value="Internet Friend">Internet Friend</option>
         </select>
 
-        <label>Price</label>
+        <label>Price (₹ per hour)</label>
         <input type="number" name="price" required>
 
         <label>Description</label>
@@ -33,6 +33,10 @@
 
         <label>Contact</label>
         <input name="contact">
+
+        <!-- IMAGE -->
+        <label>Photo</label>
+        <input type="file" name="image">
 
         <br><br>
         <button class="btn">Submit</button>

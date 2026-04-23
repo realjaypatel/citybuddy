@@ -8,8 +8,16 @@
 
 <!-- NAVBAR -->
 <div class="nav">
-    <strong>CITYBUDDY</strong>
-    <a href="/login">Login</a>
+    <strong><a href="/" style="text-decoration:none; color:inherit;">CITYBUDDY</a></strong>
+
+    <div>
+        {% if session.get("auth") %}
+            <a href="/admin">Dashboard</a>
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/login">Login</a>
+        {% endif %}
+    </div>
 </div>
 
 <div class="container">
