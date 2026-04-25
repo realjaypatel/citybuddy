@@ -17,6 +17,7 @@ body {
 .nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 16px 24px;
     background: white;
     border-bottom: 1px solid #eee;
@@ -28,24 +29,34 @@ body {
     font-weight: 500;
 }
 
-/* GRID (NEW but subtle) */
+.nav div {
+    display: flex;
+    gap: 15px;
+}
+
+/* GRID */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 16px;
 }
 
-/* CARD (UPGRADED) */
+/* CARD */
 .card {
     background: white;
     border-radius: 14px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     transition: all 0.2s ease;
+    cursor: pointer;
 }
 
 .card:hover {
     transform: translateY(-3px);
+}
+
+.card:active {
+    transform: scale(0.98);
 }
 
 /* IMAGE */
@@ -69,13 +80,14 @@ body {
     text-decoration: none;
     border: none;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .btn:hover {
     opacity: 0.9;
 }
 
-/* INPUT */
+/* INPUTS */
 input, textarea, select {
     width: 100%;
     padding: 12px;
@@ -106,6 +118,14 @@ h2 {
     margin-bottom: 20px;
 }
 
+.filters input {
+    min-width: 120px;
+}
+
+.filters select {
+    min-width: 150px;
+}
+
 /* SMALL TEXT */
 .small {
     color: #666;
@@ -118,13 +138,73 @@ hr {
     margin: 20px 0;
 }
 
-.nav div {
-    display: flex;
-    gap: 15px;
+.desc-full {
+    white-space: pre-line;
+    line-height: 1.6;
+    margin-top: 10px;
 }
 
-.desc-full {
-    white-space: pre-line;   /* keeps line breaks */
-    line-height: 1.6;        /* better readability */
-    margin-top: 10px;
+/* ---------------- RESPONSIVE ---------------- */
+
+/* Tablets */
+@media (max-width: 900px) {
+    .container {
+        padding: 16px;
+    }
+
+    .filters {
+        flex-wrap: wrap;
+    }
+
+    .filters input,
+    .filters select,
+    .filters button {
+        flex: 1 1 48%;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    /* NAVBAR */
+    .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .nav div {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    /* FILTERS */
+    .filters {
+        flex-direction: column;
+    }
+
+    .filters input,
+    .filters select,
+    .filters button {
+        width: 100%;
+    }
+
+    /* GRID */
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* IMAGE */
+    .card img {
+        height: 140px;
+    }
+
+    /* TEXT */
+    h2 {
+        font-size: 20px;
+    }
+
+    .card-content h3 {
+        font-size: 16px;
+    }
 }
